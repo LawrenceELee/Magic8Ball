@@ -11,11 +11,11 @@ import java.util.Formatter;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Fortune mFortune = new Fortune();
-
     private TextView mAnswer;
     private EditText mQuestion;
     private Button mAskButton;
+
+    private Fortune mFortune = new Fortune();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +50,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // checks if question is blank (after trimming whitespace)
+        /*
         if( input.equals("") ) {
             mAnswer.setText("You did not ask a question.");
         } else {
-            String fortune = mFortune.getFortune();
-            mAnswer.setText(fortune);
+        */
+            String f = mFortune.getFortune();
+            mAnswer.setText(f);
+            //mAnswer.setTextColor(f.getColor());
+        /*
         }
+        */
 
     }
 

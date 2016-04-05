@@ -1,5 +1,7 @@
 package com.example.lawrence.magic8ballfortuneteller;
 
+import android.graphics.Color;
+
 import java.util.Random;
 
 /**
@@ -10,7 +12,14 @@ import java.util.Random;
  */
 public class Fortune {
 
-    private final String[] fortunes = {
+    /*
+    // for the future to color text.
+    private final String RED = "#e15258";
+    private final String GREEN = "#51b46d";
+    private final String YELLOW = "#e0ab18";
+    */
+
+    private String[] fortunes = {
                     "It is certain.",
                     "It is decidedly so.",
                     "Without a doubt.",
@@ -33,17 +42,17 @@ public class Fortune {
                     "Very doubtful."
     };
 
-    public String getFortune(){
-        Random rand = new Random();
+    // all these int variables are to make the random num gen algorithm
+    // more readable and flexible if ranges happen to change.
+    Random rand = new Random();
+    int min = 0;
+    int max = fortunes.length - 1;
+    int range = max - min;
+    int randNum;
 
-        // all these int variables are to make the random num gen algorithm
-        // more readable and flexible if ranges happen to change.
-        int min = 0;
-        int max = fortunes.length;
-        int range = max - min;
-        int randNum = rand.nextInt(range + 1) + min;
-        // nextInt() generates a random number between [min, max) (i.e. max is excluded, so add 1 to get max)
-        // range = [min, max+1)
+    public String getFortune(){
+        randNum = rand.nextInt(range + 1) + min;
+        // nextInt() generates a random number between [min, max+1) (i.e. max+1 is excluded, so add 1 to get max)
 
         return fortunes[randNum];
     }
