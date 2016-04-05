@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Magic 8 Ball Fortune Teller</string>
+    <string name="app_name">Magic 8 Ball</string>
+    <string name="user_input">What is your question?</string>
+    <string name="button_text">Ask the Magic 8 Ball</string>
 </resources>

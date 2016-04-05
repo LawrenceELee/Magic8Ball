@@ -8,10 +8,42 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.lawrence.magic8ballfortuneteller.MainActivity">
+    tools:context="com.example.lawrence.magic8ballfortuneteller.MainActivity"
+    android:background="@android:color/white">
 
-    <TextView
+    <ImageView
+        android:id="@+id/magic8BallImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:layout_above="@+id/fortuneButton"
+        android:src="@drawable/magic8ball"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/userInputEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/fortuneButton"
+        android:hint="@string/user_input"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"/>
+
+    <Button
+        android:id="@+id/fortuneButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/button_text"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="Medium Text"
+        android:id="@+id/fortuneTextView"
+        android:layout_alignTop="@+id/magic8BallImageView"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"/>
+
 </RelativeLayout>
