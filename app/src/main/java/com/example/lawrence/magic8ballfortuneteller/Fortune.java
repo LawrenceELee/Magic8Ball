@@ -9,6 +9,7 @@ import java.util.Random;
  *
  */
 public class Fortune {
+
     private final String[] fortunes = {
                     "It is certain.",
                     "It is decidedly so.",
