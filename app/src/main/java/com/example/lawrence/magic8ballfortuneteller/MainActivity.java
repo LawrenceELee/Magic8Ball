@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
             String fortune = mFortune.getFortune();
             mAnswer.setText(fortune);
         }
+
     }
 
     private void clearQuestion(){
