@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText mQuestionEditText;
     private Button mAskButton;
 
-    private Fortune mFortune = new Fortune();
+    private Magic8Ball mMagic8Ball;
 
     // for shake detection
     private double acceleration;
@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mMagic8Ball = new Magic8Ball();
 
         // get refs to view widgets via R class.
         mAnswer = (TextView) findViewById(R.id.fortuneTextView);
@@ -64,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
                     // Perform action on key press
                     // a workaround for the bug is to place edittext at the top of screen.
-                    displayFortune();
+                    // workaround doesn't fix bug.
+                    //displayFortune();
 
                     return true;
                 }
@@ -94,19 +97,19 @@ public class MainActivity extends AppCompatActivity {
             // get input, trim all whitespace at beginning and end of string.
         } catch (Exception e) {
             mAnswer.setText("You did not enter any input.");
-            mAnswer.setTextColor(Color.GRAY);
+            mAnswer.setTextColor(Color.BLACK);
             mQuestionTextField.setText("");
         }
 
         // checks if question is blank (after trimming whitespace)
         if (input.equals("")) {
             mAnswer.setText("You did not ask a question.");
-            mAnswer.setTextColor(Color.GRAY);
+            mAnswer.setTextColor(Color.BLACK);
             mQuestionTextField.setText("");
         } else {
-            String[] fortune = mFortune.getFortune();
-            mAnswer.setText(fortune[0]); // get and set the text
-            mAnswer.setTextColor(Color.parseColor(fortune[1])); //get and set color of text
+            Fortune fortune = mMagic8Ball.getFortune();
+            mAnswer.setText(fortune.getText()); // get and set the text
+            mAnswer.setTextColor(fortune.getColor()); //get and set color of text
             mQuestionTextField.setText(input);
         }
 
