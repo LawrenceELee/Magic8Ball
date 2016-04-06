@@ -18,7 +18,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private TextView mAnswer;
-    private EditText mQuestion;
+    private TextView mQuestionTextField;
+    private EditText mQuestionEditText;
     private Button mAskButton;
 
     private Fortune mFortune = new Fortune();
@@ -37,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
         // get refs to view widgets via R class.
         mAnswer = (TextView) findViewById(R.id.fortuneTextView);
-        mQuestion = (EditText) findViewById(R.id.userInputEditText);
+        mQuestionTextField = (TextView) findViewById(R.id.questionTextView);
+        mQuestionEditText = (EditText) findViewById(R.id.userInputEditText);
         mAskButton = (Button) findViewById(R.id.fortuneButton);
 
         // click listener for ask button (it's kind of redundant now with the enter button on soft keyboard)
@@ -49,20 +51,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // key listener for when user presses "Enter" on soft keyboard
-        mQuestion.setOnKeyListener(new View.OnKeyListener() {
+        mQuestionEditText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
                 // If the event is a key-down event on the "enter" button
                 if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) &&
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
 
-                    // Perform action on key press
-                    // a little buggy that you don't see question
-                    //displayFortune();
-
                     // hide keyboard
                     InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    in.hideSoftInputFromWindow(mQuestion.getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    in.hideSoftInputFromWindow(mQuestionEditText.getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+                    // Perform action on key press
+                    // a workaround for the bug is to place edittext at the top of screen.
+                    displayFortune();
 
                     return true;
                 }
@@ -88,20 +90,24 @@ public class MainActivity extends AppCompatActivity {
         // check if user input is null.
         // null.toString might be null if user didn't input anything. hence the try-catch.
         try {
-            input = mQuestion.getText().toString().replaceAll("\\s+", "");  // get input, trim all whitespace.
+            input = mQuestionEditText.getText().toString().replaceAll("^\\s+|\\s+$", "");
+            // get input, trim all whitespace at beginning and end of string.
         } catch (Exception e) {
             mAnswer.setText("You did not enter any input.");
             mAnswer.setTextColor(Color.GRAY);
+            mQuestionTextField.setText("");
         }
 
         // checks if question is blank (after trimming whitespace)
         if (input.equals("")) {
             mAnswer.setText("You did not ask a question.");
             mAnswer.setTextColor(Color.GRAY);
+            mQuestionTextField.setText("");
         } else {
             String[] fortune = mFortune.getFortune();
             mAnswer.setText(fortune[0]); // get and set the text
             mAnswer.setTextColor(Color.parseColor(fortune[1])); //get and set color of text
+            mQuestionTextField.setText(input);
         }
 
         // clear EditText for next question.
@@ -109,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void clearQuestion() {
-        mQuestion.setText("");
+        mQuestionEditText.setText("");
     }
 
     // event handler for accelerometer events
