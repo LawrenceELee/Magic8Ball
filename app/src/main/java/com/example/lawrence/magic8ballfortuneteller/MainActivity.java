@@ -1,6 +1,7 @@
 package com.example.lawrence.magic8ballfortuneteller;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -26,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private double acceleration;
     private double currentAcceleration;
     private double lastAcceleration;
-    // value used to determine whether user shook the device to erase
-    private static final int ACCELERATION_THRESHOLD = 100000;
+    // value used to determine whether user shook hard enough
+    private static final int ACCELERATION_THRESHOLD = 10000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
 
                     // Perform action on key press
-                    displayFortune();
+                    // a little buggy that you don't see question
+                    //displayFortune();
 
                     // hide keyboard
                     InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -92,17 +94,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // checks if question is blank (after trimming whitespace)
-        /*
-        if( input.equals("") ) {
+        if (input.equals("")) {
             mAnswer.setText("You did not ask a question.");
         } else {
-        */
-        String f = mFortune.getFortune();
-        mAnswer.setText(f);
-        //mAnswer.setTextColor(f.getColor());
-        /*
+            String[] fortune = mFortune.getFortune();
+            mAnswer.setText(fortune[0]); // get and set the text
+            mAnswer.setTextColor(Color.parseColor(fortune[1])); //get and set color of text
         }
-        */
 
         // clear EditText for next question.
         clearQuestion();
@@ -121,8 +119,8 @@ public class MainActivity extends AppCompatActivity {
             long lastUpdate = 0;
             long curTime = System.currentTimeMillis();
 
-            // only allow one shake detect every half a second (500 millisecs).
-            if ( (curTime - lastUpdate) > 500) {
+            // only allow one shake detect every 100 milliseconds.
+            if ((curTime - lastUpdate) > 100) {
                 lastUpdate = curTime;
                 curTime = System.currentTimeMillis();
 
