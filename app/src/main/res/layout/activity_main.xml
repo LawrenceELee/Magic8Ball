@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/fortuneButton"
         android:hint="@string/user_input"
+        android:inputType="text"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"/>
 
