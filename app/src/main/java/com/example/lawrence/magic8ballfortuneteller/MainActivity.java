@@ -91,11 +91,13 @@ public class MainActivity extends AppCompatActivity {
             input = mQuestion.getText().toString().replaceAll("\\s+", "");  // get input, trim all whitespace.
         } catch (Exception e) {
             mAnswer.setText("You did not enter any input.");
+            mAnswer.setTextColor(Color.GRAY);
         }
 
         // checks if question is blank (after trimming whitespace)
         if (input.equals("")) {
             mAnswer.setText("You did not ask a question.");
+            mAnswer.setTextColor(Color.GRAY);
         } else {
             String[] fortune = mFortune.getFortune();
             mAnswer.setText(fortune[0]); // get and set the text
