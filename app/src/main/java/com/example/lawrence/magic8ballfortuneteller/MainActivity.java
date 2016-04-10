@@ -10,9 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView mQuestionTextField;
     private EditText mQuestionEditText;
     private Button mAskButton;
+    private ImageView mMagic8BallImageView;
+    private Animation shakeAnimation;
 
     private Magic8Ball mMagic8Ball;
 
@@ -43,11 +48,16 @@ public class MainActivity extends AppCompatActivity {
         mQuestionTextField = (TextView) findViewById(R.id.questionTextView);
         mQuestionEditText = (EditText) findViewById(R.id.userInputEditText);
         mAskButton = (Button) findViewById(R.id.fortuneButton);
+        mMagic8BallImageView = (ImageView) findViewById(R.id.magic8BallImageView);
+
+        // load animation layout file
+        shakeAnimation = AnimationUtils.loadAnimation(this, R.anim.shake);
 
         // click listener for ask button (it's kind of redundant now with the enter button on soft keyboard)
         mAskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                displayAnimation();
                 displayFortune();
             }
         });
@@ -115,6 +125,11 @@ public class MainActivity extends AppCompatActivity {
 
         // clear EditText for next question.
         clearQuestion();
+    }
+
+    // helper method to display shake animation for magic 8 ball image
+    private void displayAnimation(){
+        mMagic8BallImageView.startAnimation(shakeAnimation);
     }
 
     private void clearQuestion() {
