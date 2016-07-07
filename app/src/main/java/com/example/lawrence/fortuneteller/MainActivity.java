@@ -1,4 +1,4 @@
-package com.example.lawrence.magic8ballfortuneteller;
+package com.example.lawrence.fortuneteller;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView mMagic8BallImageView;
     private Animation shakeAnimation;
 
-    private Magic8Ball mMagic8Ball;
+    private FotuneFragment mFotuneFragment;
 
     // for shake detection
     private double acceleration;
@@ -41,14 +41,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mMagic8Ball = new Magic8Ball();
+        mFotuneFragment = new FotuneFragment();
 
         // get refs to view widgets via R class.
         mAnswer = (TextView) findViewById(R.id.fortuneTextView);
         mQuestionTextField = (TextView) findViewById(R.id.questionTextView);
         mQuestionEditText = (EditText) findViewById(R.id.userInputEditText);
         mAskButton = (Button) findViewById(R.id.fortuneButton);
-        mMagic8BallImageView = (ImageView) findViewById(R.id.magic8BallImageView);
+        mMagic8BallImageView = (ImageView) findViewById(R.id.backgroundImageView);
 
         // load animation layout file
         shakeAnimation = AnimationUtils.loadAnimation(this, R.anim.shake);
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
             mAnswer.setTextColor(Color.BLACK);
             mQuestionTextField.setText("");
         } else {
-            Fortune fortune = mMagic8Ball.getFortune();
+            Fortune fortune = mFotuneFragment.getFortune();
             mAnswer.setText(fortune.getText()); // get and set the text
             mAnswer.setTextColor(fortune.getColor()); //get and set color of text
             mQuestionTextField.setText(input);

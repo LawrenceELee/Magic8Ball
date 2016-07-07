@@ -1,4 +1,4 @@
-package com.example.lawrence.magic8ballfortuneteller;
+package com.example.lawrence.fortuneteller;
 
 /**
  * Created by Lawrence on 4/6/2016.

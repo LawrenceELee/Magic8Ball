@@ -8,15 +8,15 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.lawrence.magic8ballfortuneteller.MainActivity"
+    tools:context="com.example.lawrence.fortuneteller.MainActivity"
     android:background="@android:color/white">
 
     <ImageView
-        android:id="@+id/magic8BallImageView"
+        android:id="@+id/backgroundImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/questionTextView"
-        android:src="@drawable/magic8ball"
+        android:src="@drawable/background480x480px"
         android:layout_centerHorizontal="true"/>
 
     <EditText
@@ -26,7 +26,7 @@
         android:hint="@string/user_input"
         android:inputType="text"
         android:textAlignment="center"
-        android:layout_alignTop="@+id/magic8BallImageView"
+        android:layout_alignTop="@+id/backgroundImageView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
 

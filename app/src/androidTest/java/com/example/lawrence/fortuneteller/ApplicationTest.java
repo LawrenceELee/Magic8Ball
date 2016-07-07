@@ -1,4 +1,4 @@
-package com.example.lawrence.magic8ballfortuneteller;
+package com.example.lawrence.fortuneteller;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

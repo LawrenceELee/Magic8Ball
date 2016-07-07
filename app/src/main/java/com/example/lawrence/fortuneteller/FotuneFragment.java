@@ -1,11 +1,9 @@
-package com.example.lawrence.magic8ballfortuneteller;
+package com.example.lawrence.fortuneteller;
 
 import android.graphics.Color;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 /**
@@ -13,7 +11,7 @@ import java.util.Random;
  * <p/>
  * This is the data model (layer) for app.
  */
-public class Magic8Ball {
+public class FotuneFragment {
 
     /*
     // for the future to color text.
@@ -50,7 +48,7 @@ public class Magic8Ball {
 
     List<Fortune> mFortuneList;
 
-    public Magic8Ball(){
+    public FotuneFragment(){
         mFortuneList = new ArrayList<>();
 
         // load the fortunes in the constructor instead of a seperate load() method.
