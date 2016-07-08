@@ -24,10 +24,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView mQuestionTextField;
     private EditText mQuestionEditText;
     private Button mAskButton;
-    private ImageView mMagic8BallImageView;
+    private ImageView mBackgroundImageView;
     private Animation shakeAnimation;
 
-    private FotuneFragment mFotuneFragment;
+    private FortuneFragment mFortuneFragment;
 
     // for shake detection
     private double acceleration;
@@ -41,14 +41,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mFotuneFragment = new FotuneFragment();
+        mFortuneFragment = new FortuneFragment();
 
         // get refs to view widgets via R class.
         mAnswer = (TextView) findViewById(R.id.fortuneTextView);
         mQuestionTextField = (TextView) findViewById(R.id.questionTextView);
         mQuestionEditText = (EditText) findViewById(R.id.userInputEditText);
         mAskButton = (Button) findViewById(R.id.fortuneButton);
-        mMagic8BallImageView = (ImageView) findViewById(R.id.backgroundImageView);
+        mBackgroundImageView = (ImageView) findViewById(R.id.backgroundImageView);
 
         // load animation layout file
         shakeAnimation = AnimationUtils.loadAnimation(this, R.anim.shake);
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
             mAnswer.setTextColor(Color.BLACK);
             mQuestionTextField.setText("");
         } else {
-            Fortune fortune = mFotuneFragment.getFortune();
+            Fortune fortune = mFortuneFragment.getFortune();
             mAnswer.setText(fortune.getText()); // get and set the text
             mAnswer.setTextColor(fortune.getColor()); //get and set color of text
             mQuestionTextField.setText(input);
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
     // helper method to display shake animation for magic 8 ball image
     private void displayAnimation(){
-        mMagic8BallImageView.startAnimation(shakeAnimation);
+        mBackgroundImageView.startAnimation(shakeAnimation);
     }
 
     private void clearQuestion() {

@@ -11,7 +11,7 @@ import java.util.Random;
  * <p/>
  * This is the data model (layer) for app.
  */
-public class FotuneFragment {
+public class FortuneFragment {
 
     /*
     // for the future to color text.
@@ -48,7 +48,7 @@ public class FotuneFragment {
 
     List<Fortune> mFortuneList;
 
-    public FotuneFragment(){
+    public FortuneFragment(){
         mFortuneList = new ArrayList<>();
 
         // load the fortunes in the constructor instead of a seperate load() method.
